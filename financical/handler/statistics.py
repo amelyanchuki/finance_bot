@@ -1,12 +1,9 @@
 from aiogram import types, Dispatcher
 from create_bot import dp
+from data_base import sqlite_db
 
-
-async def command_statistics(message: types.Message):#статистика
-    await message.reply('Soon ^_^')
-
-
-
+async def command_statistics(message: types.Message):
+    await sqlite_db.sql_statisics_expenses(message)
 
 
 

@@ -1,8 +1,13 @@
 from aiogram.utils import executor
-from aiohttp import client
 from create_bot import dp
+from data_base import sqlite_db
+
+
+
+
 async def bot_up(_):
     print('Bot is online')
+    sqlite_db.new_sql()
 
 from handler import base, expenses, pls_update, shopping_list, statistics, income, sorry
 

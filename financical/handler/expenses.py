@@ -3,6 +3,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram import types, Dispatcher
 from create_bot import dp
 from aiogram.dispatcher.filters import Text
+from data_base import sqlite_db
 
 
 
@@ -39,8 +40,7 @@ async def load_what_price(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['what_price'] = float(message.text)
 
-    async with state.proxy() as data:
-        await message.reply(str(data))
+    await sqlite_db.sql_add_expenses(state)
     await state.finish()
 
 
