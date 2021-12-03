@@ -4,7 +4,7 @@ from data_base import sqlite_db
 
 async def command_statistics(message: types.Message):
     await sqlite_db.sql_statisics_expenses(message)
-
+    await sqlite_db.sql_statistics_income(message)
 
 
 

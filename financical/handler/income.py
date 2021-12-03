@@ -3,6 +3,7 @@ from create_bot import dp
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher.filters import Text
+from data_base import sqlite_db
 
 class FSMIncome(StatesGroup):
     income = State()
@@ -34,9 +35,9 @@ async def load_how(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['how'] = float(message.text)
 
-    async with state.proxy() as data:
-        await message.reply(str(data))
+    await sqlite_db.sql_add_expenses(state)
     await state.finish()
+
 
 # async def command_income(message: types.Message):#доходы
 #     await message.reply('Soon ^_^')
