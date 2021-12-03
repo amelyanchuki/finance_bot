@@ -5,9 +5,10 @@ b2 = KeyboardButton('/income')
 b3 = KeyboardButton('/statistics')
 b4 = KeyboardButton('/add_shopping_list')
 b5 = KeyboardButton('/shoping_list')
+b6 = KeyboardButton('/delete_shoping_list')
 
 kb_client = ReplyKeyboardMarkup(resize_keyboard=True)
 
 
-kb_client.row(b1, b2, b3).row(b4, b5)
+kb_client.row(b1, b2, b3).row(b4, b5, b6)
 

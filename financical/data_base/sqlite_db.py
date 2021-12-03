@@ -47,4 +47,11 @@ async def sql_add_shoping_list(state):
 async def sql_shoping_list(message):
     for z in cur.execute('SELECT * FROM shoping_list').fetchall():
         await bot.send_message(message.from_user.id, f'{z[0]}')
+
+async def sql_shop_list():
+    return cur.execute('SELECT * FROM shoping_list').fetchall()
+
+async def sql_delete_shoping_list(data):
+    cur.execute('DELETE FROM shoping_list WHERE what_u_want == ?', (data,))
+    base.commit()
     
