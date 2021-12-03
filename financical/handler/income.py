@@ -30,12 +30,11 @@ async def load_income(message: types.Message, state: FSMContext):
     await message.reply('How much did you earn?')
 
 
-
 async def load_how(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['how'] = float(message.text)
 
-    await sqlite_db.sql_add_expenses(state)
+    await sqlite_db.sql_add_income(state)
     await state.finish()
 
 

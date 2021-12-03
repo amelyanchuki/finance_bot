@@ -11,10 +11,11 @@ def new_sql():
     cur = base.cursor()
     if base:
         print('Data base connected')
-    base.execute('CREATE TABLE IF NOT EXISTS expenses(what_buy TEXT, price TEXT, date timestamp)')
+    base.execute('CREATE TABLE IF NOT EXISTS expenses(what_buy TEXT, price TEXT)')
     base.commit()
-    base.execute('CREATE TABLE IF NOT EXISTS income(how TEXT, income TEXT, date timestamp)')
+    base.execute('CREATE TABLE IF NOT EXISTS income(how TEXT, income TEXT)')
     base.commit
+    base.execute('CREATE TABLE IF NOT EXISTS shoping_list(what_u_want TEXT)')
 
 
 async def sql_add_expenses(state):
@@ -36,4 +37,14 @@ async def sql_add_income(state):
 async def sql_statistics_income(message):
     for x in cur.execute('SELECT * From income').fetchall():
         await bot.send_message(message.from_user.id, f'{x[0]},{x[1]}' )
+
+
+async def sql_add_shoping_list(state):
+    async with state.proxy() as data:
+        cur.execute('INSERT INTO shoping_list VALUES(?)', tuple(data.values()))
+        base.commit()
+
+async def sql_shoping_list(message):
+    for z in cur.execute('SELECT * FROM shoping_list').fetchall():
+        await bot.send_message(message.from_user.id, f'{z[0]}')
     

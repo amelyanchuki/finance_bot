@@ -3,10 +3,11 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemo
 b1 = KeyboardButton('/expenses')
 b2 = KeyboardButton('/income')
 b3 = KeyboardButton('/statistics')
-b4 = KeyboardButton('/shopping_list')
+b4 = KeyboardButton('/add_shopping_list')
+b5 = KeyboardButton('/shoping_list')
 
 kb_client = ReplyKeyboardMarkup(resize_keyboard=True)
 
 
-kb_client.add(b1).row(b2, b3, b4)
+kb_client.row(b1, b2, b3).row(b4, b5)
 
